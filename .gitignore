@@ -3,6 +3,7 @@
 /.idea
 .DS_Store
 /build
+/gradle
 *.iml
 *.apk
 *.log
