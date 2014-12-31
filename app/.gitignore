@@ -1,2 +1,2 @@
 /build
-/androidTest/java/
+*ApplicationTest.java
