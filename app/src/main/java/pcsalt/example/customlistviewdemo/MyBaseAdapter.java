@@ -20,7 +20,7 @@ public class MyBaseAdapter extends BaseAdapter {
     public MyBaseAdapter(Context context, ArrayList<ListData> myList) {
         this.myList = myList;
         this.context = context;
-        inflater = LayoutInflater.from(this.context);    // only context can also be used
+        inflater = LayoutInflater.from(this.context);
     }
 
     @Override
@@ -43,37 +43,30 @@ public class MyBaseAdapter extends BaseAdapter {
         MyViewHolder mViewHolder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.layout_list_item, null);
-            mViewHolder = new MyViewHolder();
+            convertView = inflater.inflate(R.layout.layout_list_item, parent, false);
+            mViewHolder = new MyViewHolder(convertView);
             convertView.setTag(mViewHolder);
         } else {
             mViewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        mViewHolder.tvTitle = detail(convertView, R.id.tvTitle, myList.get(position).getTitle());
-        mViewHolder.tvDesc = detail(convertView, R.id.tvDesc, myList.get(position).getDescription());
-        mViewHolder.ivIcon = detail(convertView, R.id.ivIcon, myList.get(position).getImgResId());
+        ListData currentListData = myList.get(position);
+
+        mViewHolder.tvTitle.setText(currentListData.getTitle());
+        mViewHolder.tvDesc.setText(currentListData.getDescription());
+        mViewHolder.ivIcon.setImageResource(currentListData.getImgResId());
 
         return convertView;
-    }
-
-    // or you can try better way
-    private TextView detail(View v, int resId, String text) {
-        TextView tv = (TextView) v.findViewById(resId);
-        tv.setText(text);
-        return tv;
-    }
-
-    private ImageView detail(View v, int resId, int icon) {
-        ImageView iv = (ImageView) v.findViewById(resId);
-        iv.setImageResource(icon); //
-
-        return iv;
     }
 
     private class MyViewHolder {
         TextView tvTitle, tvDesc;
         ImageView ivIcon;
-    }
 
+        public MyViewHolder(View item) {
+            tvTitle = (TextView) item.findViewById(R.id.tvTitle);
+            tvDesc = (TextView) item.findViewById(R.id.tvDesc);
+            ivIcon = (ImageView) item.findViewById(R.id.ivIcon);
+        }
+    }
 }
