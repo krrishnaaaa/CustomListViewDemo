@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     }
 
     private void getDataInList() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < title.length; i++) {
             // Create a new object for each list item
             ListData ld = new ListData();
             ld.setTitle(title[i]);
