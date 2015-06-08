@@ -50,7 +50,7 @@ public class MyBaseAdapter extends BaseAdapter {
             mViewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        ListData currentListData = myList.get(position);
+        ListData currentListData = getItem(position);
 
         mViewHolder.tvTitle.setText(currentListData.getTitle());
         mViewHolder.tvDesc.setText(currentListData.getDescription());
